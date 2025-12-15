@@ -28,6 +28,9 @@ jobs:
 
       - name: Run tests
         run: npm install --save-dev jest
+      
+      - name: mysql2 probando instalacion
+        run: npm install mysql2
 
 
   #publish-gpr:
