@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: upds2025
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: contrasena
+    ports:
+      - '3320:3306'
+    volumes:
+      - 'C:/AAA WEB/nodetarea/mysql:/var/lib/mysql'
+    
+  pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: mi_pmados
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: rootpassword
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+  web:
+    build: ./ 
+    container_name: mi_node
+    ports:
+      - "3006:3000"
+    depends_on:
+      - mysql
+
+volumes:
+  mysql-data: #'C:\AAA WEB\nodetarea\mysql'
+
+#networks:
+  #mysql_network:
+    #driver: bridge
+
+
+#git init
+#git add .
+#git commit -m "inicio"
+#git branch -M main
+#git remote add origin ..........
+#git push -u origin main
+
+#git add .
+#git commit -m "mensaje"
+#git push -u origin main
