@@ -1,6 +1,5 @@
 name: Node.js CI
 
-# Se ejecuta en push, pull request y releases
 on:
   push:
     branches: [main]
@@ -13,6 +12,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: 'hola mundo!!!!!!!!'
+        run: echo "Hola, mundo!"
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -28,27 +30,27 @@ jobs:
         run: npm install --save-dev jest
 
 
-  publish-gpr:
-    needs: build   # solo se ejecuta si build pasa
-    if: github.event_name == 'release'  # publicar solo en releases
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  #publish-gpr:
+    #needs: build   # solo se ejecuta si build pasa
+    #if: github.event_name == 'release'  # publicar solo en releases
+    #runs-on: ubuntu-latest
+    #permissions:
+      #contents: read
+      #packages: write
+    #steps:
+      #- name: Checkout repository
+        #uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          registry-url: https://npm.pkg.github.com/
+      #- name: Setup Node.js
+        #uses: actions/setup-node@v4
+        #with:
+          #node-version: 20
+          #registry-url: https://npm.pkg.github.com/
 
-      - name: Install dependencies
-        run: npm ci
+      #- name: Install dependencies
+        #run: npm ci
 
-      - name: Publish package
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #- name: Publish package
+        #run: npm publish
+        #env:
+          #NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
