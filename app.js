@@ -11,6 +11,12 @@ const db = mysql.createPool({
     database: "upds2025",
 });
 
+function suma(a, b) {
+  return a + b;
+}
+
+module.exports = { suma };
+
 app.get('/', (req, res) => {
     db.query('SELECT * FROM pruebados', (err, results) => {
         if (err) {
