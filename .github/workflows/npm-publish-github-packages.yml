@@ -23,37 +23,9 @@ jobs:
         with:
           node-version: 20
 
-      #- name: Install dependencies
-        #run: npm ci
-
       - name: Run tests
         run: npm install --save-dev jest
       
       - name: mysql2 probando instalacion
         run: npm install mysql2
 
-
-  #publish-gpr:
-    #needs: build   # solo se ejecuta si build pasa
-    #if: github.event_name == 'release'  # publicar solo en releases
-    #runs-on: ubuntu-latest
-    #permissions:
-      #contents: read
-      #packages: write
-    #steps:
-      #- name: Checkout repository
-        #uses: actions/checkout@v4
-
-      #- name: Setup Node.js
-        #uses: actions/setup-node@v4
-        #with:
-          #node-version: 20
-          #registry-url: https://npm.pkg.github.com/
-
-      #- name: Install dependencies
-        #run: npm ci
-
-      #- name: Publish package
-        #run: npm publish
-        #env:
-          #NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
